@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Dice Roll Game</title>
+
+    <!-- ✅ Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5551409351466052"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="js/dashboard.css">
+    <script type="module" src="js/dashboard.js"></script>
+
+    <!-- ✅ Detect Ad Blockers & Hide Game -->
+    <script>
+        window.onload = function() {
+            let adBlockEnabled = false;
+            let testAd = document.createElement('div');
+            testAd.innerHTML = '&nbsp;';
+            testAd.className = 'adsbox';
+            document.body.appendChild(testAd);
+
+            window.setTimeout(() => {
+                if (testAd.offsetHeight === 0) {
+                    adBlockEnabled = true;
+                }
+                testAd.remove();
+
+                if (adBlockEnabled) {
+                    document.getElementById('adblock-warning').style.display = 'block';
+                    document.getElementById('game-container').style.display = 'none'; // Hide game
+                }
+            }, 100);
+        };
+    </script>
+</head>
+<body>
+    <button id="logoutButton" class="logout-btn">Logout</button>
+
+    <div class="balance-container">
+        <span class="balance-text">Balance: <span id="balance">0</span> Points</span>
+        <button id="withdrawPageButton" class="withdraw-btn">Withdraw</button>
+    </div>
+
+    <!-- ✅ Ad Block Warning -->
+    <div id="adblock-warning" style="display:none; background: red; color: white; padding: 10px; text-align: center;">
+        ⚠️ Please disable your ad blocker to support our website! ⚠️
+    </div>
+
+    <!-- ✅ Game Content (Will be Hidden If Ad Blocker Is On) -->
+    <div id="game-container">
+        <h2>Roll the Dice!</h2>
+        <div class="dice-container">
+            <div class="dice" id="dice1">🎲</div>
+            <div class="dice" id="dice2">🎲</div>
+        </div>
+        <button id="rollButton" class="roll-btn">Roll</button>
+    </div>
+</body>
+</html>
